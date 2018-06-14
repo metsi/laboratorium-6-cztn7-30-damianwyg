@@ -30,20 +30,23 @@ from sklearn.naive_bayes import GaussianNB
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
-
+#!!1
 X_best = SelectKBest(score_func=mutual_info_classif, k=2).fit_transform(X,y)
+#!!1
 
 clf1 = neighbors.KNeighborsClassifier(n_neighbors=1)
 clf2= LinearSVC()
 clf3 = SVC(kernel='rbf')
 clf4 = GaussianNB()
 clf5 = DecisionTreeClassifier(max_depth=10)
+#!!1
 
 clf1.fit(X_best, y)
 clf2.fit(X_best, y)
 clf3.fit(X_best, y)
 clf4.fit(X_best, y)
 clf5.fit(X_best, y)
+#!!1
 
 # Plotting decision regions
 x_min, x_max = X_best[:, 0].min() - 1, X_best[:, 0].max() + 1
@@ -52,6 +55,7 @@ xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1),
                      np.arange(y_min, y_max, 0.1))
 
 f, axarr = plt.subplots(2, 3, sharex='col', sharey='row', figsize=(10, 8))
+#!!1
 axarr[-1, -1].axis('off') # ukrywanie ostatniego (pustego) wykresu
 
 for idx, clf, tt in zip((product(range(3), repeat=2)),[clf1, clf2, clf3, clf4, clf5],['K Neighbors','Linear SVC', 'SVC RBF','GaussianNB', 'Decision Tree']): # 00 01 02 ...
@@ -63,5 +67,7 @@ for idx, clf, tt in zip((product(range(3), repeat=2)),[clf1, clf2, clf3, clf4, c
     axarr[idx[0], idx[1]].scatter(X_best[:, 0], X_best[:, 1], c=y,
                                   s=20, edgecolor='k')
     axarr[idx[0], idx[1]].set_title(tt)
+    #!!1
 
 plt.show()
+#!!1
